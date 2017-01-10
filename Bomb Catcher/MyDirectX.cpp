@@ -10,6 +10,7 @@ LPDIRECT3DSURFACE9 backbuffer = NULL;
 //DirectInput variables
 LPDIRECTINPUT8 dinput = NULL;
 LPDIRECTINPUTDEVICE8 dimouse = NULL;
+LPDIRECTINPUTDEVICE8 dikeyboard = NULL;
 DIMOUSESTATE mouse_state;
 char keys[256];
 XINPUT_GAMEPAD controllers[4];
@@ -24,11 +25,16 @@ bool Direct3D_Init(HWND window, int width, int height, bool fullscreen)
 	//set Direct3D presentation parameters
 	D3DPRESENT_PARAMETERS d3dpp;
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
-	d3dpp.Windowed = (!fullscreen);
-	d3dpp.SwapEffect = D3DSWAPEFFECT_COPY;
+	//create displayparam
+	D3DDISPLAYMODE dm;
+	d3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &dm);
+	//init d3dpp
+	d3dpp.Windowed = FALSE;
+	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
+	d3dpp.BackBufferFormat = dm.Format;
 	d3dpp.BackBufferCount = 1;
-	d3dpp.BackBufferWidth = width;
-	d3dpp.BackBufferHeight = height;
+	d3dpp.BackBufferWidth = dm.Width;
+	d3dpp.BackBufferHeight = dm.Height;
 	d3dpp.hDeviceWindow = window;
 
 	//create Direct3D device

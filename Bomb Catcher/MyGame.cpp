@@ -25,16 +25,16 @@ int vibrating = 0;
 
 bool Game_Init(HWND window)
 {
-	Direct3D_Init(window, SCREENW, SCREENH, true);
+	Direct3D_Init(window, SCREENW, SCREENH, false);
 	DirectInput_Init(window);
-	bomb_surf = LoadSurface("Bmp\bomb.bmp");
+	bomb_surf = LoadSurface("666/bomb.bmp");
 	if (!bomb_surf)
 	{
 		MessageBox(window, "Error loading bomb", "fuck!!!!", NULL);
 		return false;
 	}
 
-	bucket_surf = LoadSurface("Bmp\bucket.bmp");
+	bucket_surf = LoadSurface("666/bucket.bmp");
 	if (!bucket_surf)
 	{
 		MessageBox(window, "Error loading bucket", "fuck!!!", 0);

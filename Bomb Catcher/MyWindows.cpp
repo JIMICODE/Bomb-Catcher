@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	wc.hIcon = NULL;
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
-	wc.lpszClassName = NULL;
+	wc.lpszMenuName = NULL;
 	wc.lpszClassName = "MainWindowsClass";
 	wc.hIconSm = NULL;
 
@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	(
 		"MainWindowsClass",
 		APPTITLE.c_str(),
-		WS_OVERLAPPEDWINDOW,
+		WS_EX_TOPMOST | WS_POPUP,
 		0,
 		0,
 		SCREENW,

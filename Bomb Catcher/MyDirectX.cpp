@@ -224,3 +224,32 @@ D3DXVECTOR2 GetBitmapSize(string filename)
 
 	return size;
 }
+//loading image file onto d3dtexture
+LPDIRECT3DTEXTURE9 LoadTexture(string filename, D3DCOLOR transcolor)
+{
+	LPDIRECT3DTEXTURE9 texture = NULL;
+	//get width and height from bitmap file
+	D3DXIMAGE_INFO info;
+	HRESULT result = D3DXGetImageInfoFromFile(filename.c_str(), &info);
+	if (result != D3D_OK)	return NULL;
+
+	//create the new texture by loading a bitmao image file
+	D3DXCreateTextureFromFileEx(
+		d3ddev,
+		filename.c_str(),
+		info.Width,
+		info.Height,
+		1,
+		D3DPOOL_DEFAULT,
+		D3DFMT_UNKNOWN,
+		D3DPOOL_DEFAULT,
+		D3DX_DEFAULT,
+		D3DX_DEFAULT,
+		transcolor,
+		&info,
+		NULL,
+		&texture);
+	//make sure the bitmap texture wsa loaded correctly
+	if (result != D3D_OK)	return NULL;
+	return texture;
+}

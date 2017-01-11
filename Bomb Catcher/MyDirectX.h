@@ -54,6 +54,7 @@ void XInput_Vibrate(int contNum = 0, int amount = 65535);
 bool XInput_Controller_Found();
 //Direct3D texture and sprite
 D3DXVECTOR2 GetBitmapSize(string filename);
+LPDIRECT3DTEXTURE9 LoadTexture(string filename, D3DCOLOR transcolor);
 //game function
 bool Game_Init(HWND window);
 void Game_Run(HWND window);

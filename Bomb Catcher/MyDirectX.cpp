@@ -208,3 +208,19 @@ void XInput_Vibrate(int contNum, int amount)
 	vibration.wRightMotorSpeed = amount;
 	XInputSetState(contNum, &vibration);
 }
+
+//get bitmap info
+D3DXVECTOR2 GetBitmapSize(string filename)
+{
+	D3DXIMAGE_INFO info;
+	D3DXVECTOR2 size = D3DXVECTOR2(0.0f, 0.0f);
+
+	HRESULT result = D3DXGetImageInfoFromFile(filename.c_str(), &info);
+
+	if (result == D3D_OK)
+		size = D3DXVECTOR2((float)info.Width, (float)info.Height);
+	else
+		size = D3DXVECTOR2((float)info.Width, (float)info.Height);
+
+	return size;
+}
